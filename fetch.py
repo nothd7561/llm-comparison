@@ -14,7 +14,6 @@ response = requests.get(URL, headers =
 
 data_json = response.json()
 data_df = pd.DataFrame(data_json['data'])
-print(data_df['top_provider'][0])
 
 #prompt function to extract prompt pricing from the 'pricing' column
 def get_prompt(df):

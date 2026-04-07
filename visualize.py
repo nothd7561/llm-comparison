@@ -1,15 +1,9 @@
 import plotly.express as px
-from compare import compare_models
+#from compare import compare_models
 import plotly.graph_objects as go
 
-#prompts the user for the two models they want to compare
-model1 = input("First Model: ")
-model2 = input("Second Model: ")
-
 #calls the comparison script on the two models and stores the result in a variable called compare_data
-compare_data = compare_models(model1, model2)
-
-
+#compare_data = compare_models(model1, model2)
 
 def create_bar(data):
     #creates a bar chart using plotly express to compare the prompt pricing of the two models
@@ -28,9 +22,11 @@ def create_grouped_bar(data):
                                   color='name',
                                   barmode='group')
     return grouped_bar_chart
-
+ 
+#creates a radar chart using plotly graph objects to compare the context length, max completion tokens, prompt pricing, and completion pricing of the two models
 def create_radar(data):
 
+    #normalize the context length, max completion tokens, prompt pricing, and completion pricing values for the two models to be between 0 and 1
     norm_length1 = data['context_length'].values[0] / data['context_length'].max()
     norm_tokens1 = data['max_completion_tokens'].values[0] / data['max_completion_tokens'].max()
     norm_length2 = data['context_length'].values[1] / data['context_length'].max()
@@ -40,7 +36,7 @@ def create_radar(data):
     norm_completion1 = data['completion_pricing'].values[0] / data['completion_pricing'].max()
     norm_completion2 = data['completion_pricing'].values[1] / data['completion_pricing'].max()
 
-
+#radar chart to compare the two models
     radar_chart = go.Figure()
     radar_chart.add_trace(go.Scatterpolar(
         r=[norm_length1, norm_tokens1, norm_pricing1, norm_completion1],
@@ -56,10 +52,6 @@ def create_radar(data):
     ))
     return radar_chart
 
-bar_show = create_bar(compare_data)
-grouped_bar_show = create_grouped_bar(compare_data)
-radar_show = create_radar(compare_data)
-bar_show.show()
-grouped_bar_show.show() 
-radar_show.show()   
+#calls the create_bar, create_grouped_bar, and create_radar functions on the compare_data variable and shows the resulting charts
+
   

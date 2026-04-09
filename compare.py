@@ -23,5 +23,11 @@ def compare_models(model_1, model_2):
     stats2 = match2[['name', 'prompt_pricing', 'completion_pricing', 'context_length', 'max_completion_tokens', 'is_moderated']]
 
     compare_data = pd.concat([stats1, stats2], axis=0)
-
+    compare_data = compare_data.rename(columns={'name': 'Model Name',
+                                                'prompt_pricing': 'Prompt Pricing (Tokens)', 
+                                                'completion_pricing': 'Completion Pricing (Tokens)',
+                                                'context_length': 'Context Length',
+                                                'max_completion_tokens': 'Max Completion Tokens',
+                                                'is_moderated': 'Moderated'
+                                                })
     return compare_data

@@ -8,18 +8,19 @@ import plotly.graph_objects as go
 def create_bar(data):
     #creates a bar chart using plotly express to compare the prompt pricing of the two models
     bar_chart = px.bar(data, 
-                                x='name', 
-                                y='prompt_pricing',
+                                x='Model Name', 
+                                y='Prompt Pricing (Tokens)',
                                 barmode='group')
+    
     return bar_chart
 
 def create_grouped_bar(data):
     #creates a grouped bar chart using plotly express to compare the context length and max completion tokens of the two models
-    melt_data = data.melt(id_vars=['name'], value_vars=['context_length', 'max_completion_tokens'], var_name='metric', value_name='value')
+    melt_data = data.melt(id_vars=['Model Name'], value_vars=['Context Length', 'Max Completion Tokens'], var_name='Metrics', value_name='Amount(Tokens)')
     grouped_bar_chart = px.bar(melt_data, 
-                                  x='metric', 
-                                  y='value',
-                                  color='name',
+                                  x='Metrics', 
+                                  y='Amount(Tokens)',
+                                  color='Model Name',
                                   barmode='group')
     return grouped_bar_chart
  
@@ -27,26 +28,26 @@ def create_grouped_bar(data):
 def create_radar(data):
 
     #normalize the context length, max completion tokens, prompt pricing, and completion pricing values for the two models to be between 0 and 1
-    norm_length1 = data['context_length'].values[0] / data['context_length'].max()
-    norm_tokens1 = data['max_completion_tokens'].values[0] / data['max_completion_tokens'].max()
-    norm_length2 = data['context_length'].values[1] / data['context_length'].max()
-    norm_tokens2 = data['max_completion_tokens'].values[1] / data['max_completion_tokens'].max()
-    norm_pricing1 = data['prompt_pricing'].values[0] / data['prompt_pricing'].max()
-    norm_pricing2 = data['prompt_pricing'].values[1] / data['prompt_pricing'].max()
-    norm_completion1 = data['completion_pricing'].values[0] / data['completion_pricing'].max()
-    norm_completion2 = data['completion_pricing'].values[1] / data['completion_pricing'].max()
+    norm_length1 = data['Context Length'].values[0] / data['Context Length'].max()
+    norm_tokens1 = data['Max Completion Tokens'].values[0] / data['Max Completion Tokens'].max()
+    norm_length2 = data['Context Length'].values[1] / data['Context Length'].max()
+    norm_tokens2 = data['Max Completion Tokens'].values[1] / data['Max Completion Tokens'].max()
+    norm_pricing1 = data['Prompt Pricing (Tokens)'].values[0] / data['Prompt Pricing (Tokens)'].max()
+    norm_pricing2 = data['Prompt Pricing (Tokens)'].values[1] / data['Prompt Pricing (Tokens)'].max()
+    norm_completion1 = data['Completion Pricing (Tokens)'].values[0] / data['Completion Pricing (Tokens)'].max()
+    norm_completion2 = data['Completion Pricing (Tokens)'].values[1] / data['Completion Pricing (Tokens)'].max()
 
 #radar chart to compare the two models
     radar_chart = go.Figure()
     radar_chart.add_trace(go.Scatterpolar(
         r=[norm_length1, norm_tokens1, norm_pricing1, norm_completion1],
-        theta=['context_length', 'max_completion_tokens', 'prompt_pricing', 'completion_pricing'],
+        theta=['Context Length', 'Max Completion Tokens', 'Prompt Pricing (Tokens)', 'Completion Pricing (Tokens)'],
         name='Model 1',
         fill='toself'
     ))
     radar_chart.add_trace(go.Scatterpolar(
         r=[norm_length2, norm_tokens2, norm_pricing2, norm_completion2],
-        theta=['context_length', 'max_completion_tokens', 'prompt_pricing', 'completion_pricing'],
+        theta=['Context Length', 'Max Completion Tokens', 'Prompt Pricing (Tokens)', 'Completion Pricing (Tokens)'],
         name='Model 2',
         fill='toself'
     ))

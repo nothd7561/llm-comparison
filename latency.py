@@ -8,6 +8,7 @@ import pandas as pd
 import requests
 from pathlib import Path
 
+
 # hits the OpenRouter endpoints API for a given model and returns average latency across all providers
 # the /endpoints route returns one entry per provider serving that model
 def pull_latency(model_id):

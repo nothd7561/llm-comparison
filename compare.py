@@ -19,8 +19,8 @@ def compare_models(model_1, model_2):
     match1 = compare_df[compare_df['name'] == result[0]]
     match2 = compare_df[compare_df['name'] == result2[0]]
     #pick the columns 'prompt_pricing', 'completion_pricing', 'context_length', 'max_completion_tokens', and 'is_moderated' from the match1 and match2 dataframes
-    stats1 = match1[['name', 'prompt_pricing', 'completion_pricing', 'context_length', 'max_completion_tokens', 'is_moderated']]
-    stats2 = match2[['name', 'prompt_pricing', 'completion_pricing', 'context_length', 'max_completion_tokens', 'is_moderated']]
+    stats1 = match1[['id','name', 'prompt_pricing', 'completion_pricing', 'context_length', 'max_completion_tokens', 'is_moderated']]
+    stats2 = match2[['id','name', 'prompt_pricing', 'completion_pricing', 'context_length', 'max_completion_tokens', 'is_moderated']]
 
     compare_data = pd.concat([stats1, stats2], axis=0)
     compare_data = compare_data.rename(columns={'name': 'Model Name',

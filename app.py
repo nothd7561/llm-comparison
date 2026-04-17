@@ -1,5 +1,5 @@
-from visualize import create_bar, create_bar_length, create_bar_tokens, create_radar
-from compare import compare_models
+from backend.visualize import create_bar, create_bar_length, create_bar_tokens, create_radar
+from backend.compare import compare_models
 import pandas as pd
 import streamlit as st
 

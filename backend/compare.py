@@ -1,8 +1,9 @@
 import pandas as pd
 import requests
 import rapidfuzz
+from benchmark import get_benchmark
 
-input_csv = r'C:\Users\lucas\Downloads\Code\LLM Comparison\data.csv'
+input_csv = r'C:\Users\lucas\Downloads\Code\LLM Comparison\data_fetching\data.csv'
 compare_df = pd.read_csv(input_csv)
 
 def compare_models(model_1, model_2):
@@ -30,4 +31,14 @@ def compare_models(model_1, model_2):
                                                 'max_completion_tokens': 'Max Completion Tokens',
                                                 'is_moderated': 'Moderated'
                                                 })
+    
+    bench1 = get_benchmark(model_1)
+    bench2 = get_benchmark(model_2)
+    compare_data["Intel Index"] = bench1[0], bench2[0]
+    compare_data["Code Index"] = bench1[1], bench2[1]
+    compare_data["Math Index"] = bench1[2], bench2[2]
+ 
     return compare_data
+
+
+print(compare_models("GPT 4.1", "Claude Opus"))

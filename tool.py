@@ -3,7 +3,7 @@ from backend.compare import compare_models
 import pandas as pd
 import streamlit as st
 
-input_csv = r'C:\Users\lucas\Downloads\Code\LLM Comparison\data_fetching\data.csv'
+input_csv = 'data_fetching/data.csv'
 compare_df = pd.read_csv(input_csv)
 
 

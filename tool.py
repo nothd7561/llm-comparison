@@ -26,7 +26,7 @@ st.sidebar.markdown("General Idea: Compare two LLMs on various metrics.")
 st.sidebar.markdown("Data Attrition: Openrouter AI, Artificial Analysis")
 st.sidebar.markdown("Gmail: ll207@rice.edu")
 st.sidebar.markdown("LinkedIn: www.linkedin.com/in/lucas-lu6978")
-st.sidebar.markdown("Documentation and Github will come later!")
+st.sidebar.markdown("Github: https://github.com/nothd7561/llm-comparison")
                     
 #creates a button to initiate the comparison of the two models
 initiate = st.button("Compare")

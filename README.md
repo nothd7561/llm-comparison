@@ -34,14 +34,12 @@ Select any two models from 400+ LLMs and compare them on:
 
 1. Clone the repo
 2. Install dependencies: `python -m pip install -r requirements.txt`
-3. Add a `.env` file with your API keys:
-4. Run `python data_fetching/fetch.py` to pull model data
-5. Run `python backend/benchmark.py` to generate the benchmark cache
-6. Run `streamlit run tool.py` to start the app
+3. Run `streamlit run tool.py` to start the app
 
 ---
 
 ## Author
 
 Lucas Lu — ll207@rice.edu — [LinkedIn](https://www.linkedin.com/in/lucas-lu6978)
+
 

@@ -1,7 +1,7 @@
 import pandas as pd
 import requests
 import rapidfuzz
-from benchmark import get_benchmark
+from backend.benchmark import get_benchmark
 
 input_csv = r'C:\Users\lucas\Downloads\Code\LLM Comparison\data_fetching\data.csv'
 compare_df = pd.read_csv(input_csv)
@@ -37,7 +37,8 @@ def compare_models(model_1, model_2):
     compare_data["Intel Index"] = bench1[0], bench2[0]
     compare_data["Code Index"] = bench1[1], bench2[1]
     compare_data["Math Index"] = bench1[2], bench2[2]
- 
+    compare_data["Latency"] = bench1[3], bench2[3]
+    compare_data["Output Speed"] = bench1[4], bench2[4]
     return compare_data
 
 

@@ -21,7 +21,6 @@ st.subheader("1 Token = .75 words/4 characters")
 #create two dropdowns to select models
 model1 = st.sidebar.selectbox("Model 1", name_list)
 model2 = st.sidebar.selectbox("Model 2", name_list)
-st.sidebar.markdown("First Project, Don't Flame me!")
 st.sidebar.markdown("General Idea: Compare two LLMs on various metrics.")
 st.sidebar.markdown("Data Attrition: Openrouter AI, Artificial Analysis")
 st.sidebar.markdown("Gmail: ll207@rice.edu")
@@ -48,7 +47,7 @@ if initiate == True:
     st.caption("Attritioned from Artificial Analysis")
     st.caption("Intel Index measures general reasoning, problem solving ability, and logic.")
     st.caption("Code Index measures how well the LLM can write code, debug, and understand languages.")
-    st.caption("Math Index measures mathmematical reasoning ability. Proofs, world problems, etc. ")
+    
     st.plotly_chart(create_benchmark_bar(compare_data))
 
     st.subheader("Prompt Pricing")

@@ -90,6 +90,20 @@ def create_radar(data):
 
     return radar_chart
 
+
+def create_benchmark_bar(data):
+    data_melt = data.melt(
+        id_vars='Model Name',
+        value_vars=['Intel Index', 'Code Index', 'Math Index'],
+        var_name='Metrics',
+        value_name='Score'
+    )
+    grouped_bar = px.bar(data_melt, x='Metrics', y='Score', color='Model Name', barmode='group')
+    grouped_bar.update_layout(
+        yaxis = dict(
+            range=[0, 70]))
+    return grouped_bar
+
 #calls the create_bar, create_grouped_bar, and create_radar functions on the compare_data variable and shows the resulting charts
 
   

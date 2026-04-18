@@ -15,6 +15,7 @@ for name in compare_df['name']:
 
 #title the app
 st.title("AI Model Comparison Sideproject")
+st.subheader("1 Token = .75 words/4 characters")
 
 
 #create two dropdowns to select models
@@ -36,14 +37,34 @@ if initiate == True:
     compare_data = compare_models(model1, model2)
     col1, col2 = st.columns(2)
     with col1:
+        st.subheader(compare_data["Model Name"].values[0])
         st.metric(label="Response Latency (Seconds)", value=compare_data["Latency"].values[0])
         st.metric(label="Output Speed (Tokens/Second)", value=compare_data["Output Speed"].values[0])
     with col2:
+        st.subheader(compare_data["Model Name"].values[1])
         st.metric(label="Response Latency (Seconds)", value=compare_data["Latency"].values[1])
         st.metric(label="Output Speed (Tokens/Second)", value=compare_data["Output Speed"].values[1])
-    
+    st.subheader("Model Index Scores")
+    st.caption("Attritioned from Artificial Analysis")
+    st.caption("Intel Index measures general reasoning, problem solving ability, and logic.")
+    st.caption("Code Index measures how well the LLM can write code, debug, and understand languages.")
+    st.caption("Math Index measures mathmematical reasoning ability. Proofs, world problems, etc. ")
     st.plotly_chart(create_benchmark_bar(compare_data))
+
+    st.subheader("Prompt Pricing")
+    st.caption("Prompt Pricing is how much you're charged for sending an input.")
+    st.caption("Higher Number = More expensive.")
     st.plotly_chart(create_bar(compare_data))
+
+    st.subheader("Max Completion Tokens")
+    st.caption("Max Completion Tokens is the maximum length of the AI's answer.")
     st.plotly_chart(create_bar_tokens(compare_data))
+
+    st.subheader("Context Length")
+    st.caption("Context Length is the amount of information the model can remember in your chat.")
+    st.caption("This includes pasted documents, input messages, files, earlier chat history, etc.")
+    st.caption("Higher = Better")
     st.plotly_chart(create_bar_length(compare_data))
+
+    st.subheader("Overall Rating")
     st.plotly_chart(create_radar(compare_data))
